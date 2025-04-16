@@ -3,6 +3,8 @@
 from app import app
 from models import db, Bakery, BakedGood
 
+print("🌱🌱🌱 Seeding!")
+
 with app.app_context():
 
     BakedGood.query.delete()
@@ -21,3 +23,5 @@ with app.app_context():
 
     db.session.add_all(baked_goods)
     db.session.commit()
+
+print("Done Seeding 🪴🪴🪴")
