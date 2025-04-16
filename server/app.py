@@ -64,6 +64,24 @@ def create_baked_goods():
 
     return response
 
+@app.route("/baked_goods/<int:id>", methods=['DELETE'])
+def delete_baked_goods(id):
+    baked_good = BakedGood.query.filter_by(id=id).first()
+    db.session.delete(baked_good)
+    db.session.commit()
+
+    response_body = {
+        "delete_successfull": True, 
+        "message": "Baked Good Deleted"
+    }
+
+    response = make_response(
+        response_body,
+        200
+    )
+
+    return response
+
 @app.route("/bakeries/<int:id>", methods=["PATCH"])
 def update_bakery(id):
     bakery = Bakery.query.filter_by(id=id).first()
